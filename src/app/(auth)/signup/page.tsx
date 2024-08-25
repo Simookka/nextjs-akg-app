@@ -11,7 +11,7 @@ import akgImage from "@/assets/akg-enhanced.png";
   title: "Sign up",
 }; */
 
-const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+//const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
 export default function Page() {
   return (
@@ -33,7 +33,7 @@ export default function Page() {
           </div>
         </div>
         <Image
-          src={isDarkMode ? signupImage : akgImage}
+          src={akgImage}
           alt=""
           className="hidden w-1/2 object-cover md:block"
         />

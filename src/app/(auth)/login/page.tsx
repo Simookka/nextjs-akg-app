@@ -8,12 +8,13 @@ import GoogleSignInButton from "./google/GoogleSignInButton";
 import LoginForm from "./LoginForm";
 import akgImage from "@/assets/akg-enhanced.png";
 import Head from "next/head";
+import { useEffect, useState } from "react";
 
 /* export const metadata: Metadata = {
   title: "Login",
 }; */
 
-const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+//const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
 export default function Page() {
   return (
@@ -37,7 +38,7 @@ export default function Page() {
           </div>
         </div>
         <Image
-          src={isDarkMode ? loginImage : akgImage}
+          src={akgImage}
           width={350}
           height={350}
           alt=""
