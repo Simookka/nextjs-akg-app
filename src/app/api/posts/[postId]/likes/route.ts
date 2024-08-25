@@ -70,6 +70,10 @@ export async function POST(
       return Response.json({ error: "Post not found" }, { status: 404 });
     }
 
+
+// here the like and the notification operations could be two different ones, but with the $transaction we group then
+//this means eaither both succeed or both fail, and we can't have a situation where someone likes a post but a notification is not recived. 
+//otherwise in theory this could happen, but its still very rare 
     await prisma.$transaction([
       prisma.like.upsert({
         where: {
@@ -84,7 +88,7 @@ export async function POST(
         },
         update: {},
       }),
-      ...(loggedInUser.id !== post.userId
+      ...(loggedInUser.id !== post.userId // we dont want to create a notification if someone likes his own post
         ? [
             prisma.notification.create({
               data: {

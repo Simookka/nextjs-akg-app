@@ -31,6 +31,7 @@ import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import Resizer from "react-image-file-resizer";
 import { useUpdateProfileMutation } from "./mutations";
+import { alkotoOptions, evfolyamOptions, patronusOptions } from "./options.js";
 
 interface EditProfileDialogProps {
   user: UserData;
@@ -48,6 +49,9 @@ export default function EditProfileDialog({
     defaultValues: {
       displayName: user.displayName,
       bio: user.bio || "",
+      evfolyam: user.evfolyam || "",
+      patronus: user.patronus || "",
+      alkoto: user.alkoto || "",
     },
   });
 
@@ -80,7 +84,7 @@ export default function EditProfileDialog({
         <DialogHeader>
           <DialogTitle>Edit profile</DialogTitle>
         </DialogHeader>
-        <div className="space-y-1.5">
+        <div className="hidden space-y-1.5 h-md:block">
           <Label>Avatar</Label>
           <AvatarInput
             src={
@@ -122,6 +126,82 @@ export default function EditProfileDialog({
                   <FormMessage />
                 </FormItem>
               )}
+            />
+            <FormField
+              control={form.control}
+              name="evfolyam"
+              render={({ field }) => {
+                return (
+                  <FormItem>
+                    <FormLabel>Évfolyam</FormLabel>
+                    <FormControl>
+                      <select
+                        {...field}
+                        className="mt-1 block w-full rounded-md border px-3 py-2 shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
+                      >
+                        {evfolyamOptions.map((option) => (
+                          <option key={option.value} value={option.value}>
+                            {option.label}
+                          </option>
+                        ))}
+                      </select>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                );
+              }}
+            />
+            <FormField
+              control={form.control}
+              name="patronus"
+              render={({ field }) => {
+                return (
+                  <FormItem>
+                    <FormLabel>Patrónus</FormLabel>
+                    <FormControl>
+                      <select
+                        {...field}
+                        className="mt-1 block w-full rounded-md border px-3 py-2 shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
+                      >
+                        {patronusOptions.map((option) => (
+                          <option key={option.value} value={option.value}>
+                            {option.label}
+                          </option>
+                        ))}
+                      </select>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                );
+              }}
+            />
+            <FormField
+              control={form.control}
+              name="alkoto"
+              render={({ field }) => {
+                return (
+                  <FormItem>
+                    <FormLabel>Alkotókörök</FormLabel>
+                    <FormControl>
+                      <select
+                        {...field}
+                        className="mt-1 block w-full rounded-md border px-3 py-2 shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
+                      >
+                        {alkotoOptions.map((group) => (
+                          <optgroup key={group.label} label={group.label}>
+                            {group.options.map((option) => (
+                              <option key={option.value} value={option.value}>
+                                {option.label}
+                              </option>
+                            ))}
+                          </optgroup>
+                        ))}
+                      </select>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                );
+              }}
             />
             <DialogFooter>
               <LoadingButton type="submit" loading={mutation.isPending}>

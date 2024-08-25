@@ -40,7 +40,7 @@ export default function BookmarkButton({
         : kyInstance.post(`/api/posts/${postId}/bookmark`),
     onMutate: async () => {
       toast({
-        description: `Post ${data.isBookmarkedByUser ? "un" : ""}bookmarked`,
+        description: `Post ${data.isBookmarkedByUser ? "Unb" : "B"}ookmarked`,
       });
 
       await queryClient.cancelQueries({ queryKey });

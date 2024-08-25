@@ -37,7 +37,7 @@ export default function DeletePostDialog({
           <DialogTitle>Delete post?</DialogTitle>
           <DialogDescription>
             Are you sure you want to delete this post? This action cannot be
-            undone.
+            reversed.
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>

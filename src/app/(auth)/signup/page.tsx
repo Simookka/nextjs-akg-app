@@ -1,12 +1,17 @@
-import signupImage from "@/assets/signup-image.jpg";
+"use client";
+
 import { Metadata } from "next";
+import signupImage from "@/assets/signup-image.jpg";
 import Image from "next/image";
 import Link from "next/link";
 import SignUpForm from "./SignUpForm";
+import akgImage from "@/assets/akg-enhanced.png";
 
-export const metadata: Metadata = {
-  title: "Sign Up",
-};
+/* export const metadata: Metadata = {
+  title: "Sign up",
+}; */
+
+const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
 export default function Page() {
   return (
@@ -14,21 +19,21 @@ export default function Page() {
       <div className="flex h-full max-h-[40rem] w-full max-w-[64rem] overflow-hidden rounded-2xl bg-card shadow-2xl">
         <div className="w-full space-y-10 overflow-y-auto p-10 md:w-1/2">
           <div className="space-y-1 text-center">
-            <h1 className="text-3xl font-bold">Sign up to bugbook</h1>
-            <p className="text-muted-foreground">
+            <h1 className="text-3xl font-bold">Sign up to Project Media</h1>
+            {/* <p className="text-muted-foreground">
               A place where even <span className="italic">you</span> can find a
-              friend.
-            </p>
+              friend
+            </p> */}
           </div>
           <div className="space-y-5">
             <SignUpForm />
             <Link href="/login" className="block text-center hover:underline">
-              Already have an account? Log in
+              Alredy haven an account? Log in
             </Link>
           </div>
         </div>
         <Image
-          src={signupImage}
+          src={isDarkMode ? signupImage : akgImage}
           alt=""
           className="hidden w-1/2 object-cover md:block"
         />

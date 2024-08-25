@@ -26,7 +26,7 @@ async function WhoToFollow() {
 
   if (!user) return null;
 
-  const usersToFollow = await prisma.user.findMany({
+  /* const usersToFollow = await prisma.user.findMany({
     where: {
       NOT: {
         id: user.id,
@@ -39,6 +39,44 @@ async function WhoToFollow() {
     },
     select: getUserDataSelect(user.id),
     take: 5,
+  }); */
+
+  const usersWithLikeCounts = await prisma.user.findMany({
+    where: {
+      NOT: { id: user.id },
+      followers: { none: { followerId: user.id } },
+    },
+    select: {
+      id: true,
+      _count: {
+        select: {
+          posts: {
+            where: {
+              likes: {
+                some: {
+                  userId: user.id,
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  });
+
+  // Sort users by the number of liked posts in JavaScript
+  const sortedUserIds = usersWithLikeCounts
+    .sort((a, b) => b._count.posts - a._count.posts)
+    .slice(0, 5)
+    .map((user) => user.id);
+
+  const usersToFollow = await prisma.user.findMany({
+    where: {
+      id: {
+        in: sortedUserIds,
+      },
+    },
+    select: getUserDataSelect(user.id),
   });
 
   return (

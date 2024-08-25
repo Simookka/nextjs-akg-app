@@ -120,6 +120,20 @@ async function UserProfile({ user, loggedInUserId }: UserProfileProps) {
           <FollowButton userId={user.id} initialState={followerInfo} />
         )}
       </div>
+      <div>
+        <h1>
+          Évfolyam:
+          <span className="font-semibold"> {user.evfolyam}</span>
+        </h1>
+        <h1>
+          Patrónus:
+          <span className="font-semibold"> {user.patronus}</span>
+        </h1>
+        <h1>
+          Alkotókörök:
+          <span className="font-semibold"> {user.alkoto}</span>
+        </h1>
+      </div>
       {user.bio && (
         <>
           <hr />

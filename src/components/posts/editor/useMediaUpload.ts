@@ -60,6 +60,8 @@ export default function useMediaUpload() {
     },
   });
 
+  //we need the follwing function because onUploadProgress can missbehave if we upload to files at the same time, this fucntion is to get around this problem (if we change the storage from uploadthing to another supplier, or the creators of Uploadthing patch to problem, we might not need this part)
+
   function handleStartUpload(files: File[]) {
     if (isUploading) {
       toast({

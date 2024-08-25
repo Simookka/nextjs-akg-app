@@ -55,6 +55,7 @@ export async function signUp(
       };
     }
 
+// this is written a bit different in the video, but i think they will change it to this form
     await prisma.$transaction(async (tx) => {
       await tx.user.create({
         data: {
