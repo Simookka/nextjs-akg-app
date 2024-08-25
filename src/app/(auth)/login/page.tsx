@@ -16,7 +16,7 @@ import Head from "next/head";
 //const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
 export default function Page() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+/*  const [isDarkMode, setIsDarkMode] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -25,7 +25,7 @@ export default function Page() {
     setIsDarkMode(darkMode);
   }, []);
 
-  if (!mounted) return null; // Return null during SSR
+  if (!mounted) return null; // Return null during SSR */
   return (
     <main className="flex h-screen items-center justify-center p-5">
       <div className="flex h-full max-h-[40rem] w-full max-w-[64rem] overflow-hidden rounded-2xl bg-card shadow-2xl">
@@ -47,7 +47,7 @@ export default function Page() {
           </div>
         </div>
         <Image
-          src={isDarkMode ? loginImage : akgImage}
+          src{akgImage}
           width={350}
           height={350}
           alt=""
