@@ -17,6 +17,16 @@ import { useEffect, useState } from "react";
 //const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
 export default function Page() {
+  /*  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true); // Mark as mounted to indicate it's running on the client side
+    const darkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    setIsDarkMode(darkMode);
+  }, []);
+
+  if (!mounted) return null; // Return null during SSR */
   return (
     <main className="flex h-screen items-center justify-center p-5">
       <div className="flex h-full max-h-[40rem] w-full max-w-[64rem] overflow-hidden rounded-2xl bg-card shadow-2xl">
